@@ -1,0 +1,264 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="master.master.cs" Inherits="WebBanHang.master" EnableViewState="false"%>
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="description" content="Fashi Template"/>
+    <meta name="keywords" content="Fashi, unica, creative, html"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
+    <title>
+        <asp:ContentPlaceHolder ID="title" runat="server"></asp:ContentPlaceHolder>
+    </title>
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"/>
+	
+
+    <!-- Css Styles -->
+    <link rel="stylesheet" href="/Asets/display/css/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/font-awesome.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/themify-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/elegant-icons.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/owl.carousel.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/nice-select.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/jquery-ui.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/slicknav.min.css" type="text/css" />
+    <link rel="stylesheet" href="/Asets/display/css/style.css" type="text/css" />
+</head>
+
+<body>
+
+    <!-- Page Preloder -->
+    <div id="preloder">
+        <div class="loader"></div>
+    </div>
+
+    <!-- Header Section Begin -->
+    <header class="header-section">
+        <div class="header-top">
+            <div class="container">
+                <div class="ht-left">
+                    <div class="mail-service">
+                        <i class=" fa fa-envelope"></i>
+                        <asp:Literal ID="ltlGmail" runat="server"></asp:Literal>
+                    </div>
+                    <div class="phone-service">
+                        <i class=" fa fa-phone"></i>
+                        <asp:Literal ID="ltlSDT" runat="server"></asp:Literal>
+                    </div>
+                </div>
+                <div class="ht-right">
+                    <% if (Session["DangNhap"] == null) {%>
+                        <div class="notlogin" ></div>
+                        <div class="login-panel">
+                        <i class="fa fa-user"></i>
+                            <a href="/Login.aspx" class="buttonDangNhap">Đăng nhập</a>
+                    </div>
+                    <% } else {%>
+                        <div class="logined" style="display:none"></div>
+                        <div class="user_info">
+                            <i class="fa fa-user"></i>
+                            <asp:Literal ID="tenTK" runat="server" />
+                        </div>
+                    <% } %>
+                    
+                    <div class="top-social">
+                        <a href="#"><i class="ti-facebook"></i></a>
+                        <a href="#"><i class="ti-twitter-alt"></i></a>
+                        <a href="#"><i class="ti-linkedin"></i></a>
+                        <a href="#"><i class="ti-pinterest"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="inner-header">
+                <div class="row">
+                    <div class="col-lg-2 col-md-2">
+                        <div class="logo">
+                            <a href="/Home.aspx">
+                                <img src="/images/Display/logo.png" alt=""/>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-7">
+                        <div class="advanced-search">
+                            <button type="button" class="category-btn">Tất cả</button>
+                            <div class="input-group">
+                                <input type="text" placeholder="Bạn cần tìm gì?"/>
+                                <button type="button"><i class="ti-search"></i></button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-3 text-right col-md-3">
+                        <ul class="nav-right">
+                            <li class="heart-icon">
+                                <a href="#">
+                                    <i class="icon_heart_alt"></i>
+                                    <span>1</span>
+                                </a>
+                            </li>
+                            <li class="cart-icon">
+                                <a href="cms/frontend/GioHang/index.aspx">
+                                    <i class="icon_bag_alt"></i>
+                                    <span class="cart-icon-number"></span>
+                                </a>
+                                <div class="cart-hover">
+                                    <div class="select-items">
+                                        <table>
+                                            <tbody>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="select-total">
+                                        <span>total:</span>
+                                        <h5  class="cart-icon-total">120.00</h5>
+                                    </div>
+                                    <div class="select-button">
+                                        <a href="/cms/frontend/GioHang/index.aspx" class="primary-btn view-card">Xem đơn hàng</a>
+                                        <a href="/cms/frontend/GioHang/ThanhToan.aspx" class="primary-btn checkout-btn">Thanh toán</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="cart-price"></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="nav-item">
+            <div class="container">
+                <div class="nav-depart">
+                    <div class="depart-btn">
+                        <i class="ti-menu"></i>
+                        <span>Tất cả danh mục</span>
+                        <ul class="depart-hover">
+                            <li class="active"><a href="#">Thời trang</a></li>
+                            <li><a href="#">Đồ gia dụng</a></li>
+                            <li><a href="#">Đồ điện tử</a></li>
+                            <li><a href="#">Đồ dùng khác</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <nav class="nav-menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="/Home.aspx">Trang chủ</a></li>
+                        <li><a href="./shop.html">Sản phẩm</a></li>
+                        <li><a href="./blog.html">Diễn đàn</a></li>
+                        <li><a href="./contact.html">Liên hệ</a></li>
+                        <li><a href="#">Trang</a>
+                            <ul class="dropdown">
+                                <li><a href="/cms/frontend/GioHang/index.aspx">Giỏ hàng</a></li>
+                                <li><a href="/cms/frontend/GioHang/HistoryCart.aspx">Nhật ký</a></li>
+                                <li><a href="/Login.aspx">Đăng ký & Đăng nhập</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </nav>
+                <div id="mobile-menu-wrap"></div>
+            </div>
+        </div>
+    </header>
+    <!-- Header End -->
+
+    <asp:ContentPlaceHolder ID="content" runat="server"></asp:ContentPlaceHolder>
+    
+    <!-- Footer Section Begin -->
+    <footer class="footer-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4">
+                    <div class="footer-left">
+                        <div class="footer-logo">
+                            <a href="#"><img src="/images/Display/footer-logo.png" alt=""/></a>
+                        </div>
+                        <ul>
+                            <li>Địa chỉ: 298 Cầu Diễn, Bắc Từ Liêm, Hà Nội</li>
+                            <li>Điện thoại: 0974.198.943</li>
+                            <li>Email: phunghaiduong.99@gmail.com</li>
+                        </ul>
+                        <div class="footer-social">
+                            <a href="#"><i class="fa fa-facebook"></i></a>
+                            <a href="#"><i class="fa fa-instagram"></i></a>
+                            <a href="#"><i class="fa fa-twitter"></i></a>
+                            <a href="#"><i class="fa fa-pinterest"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>Thông tin</h5>
+                        <ul>
+                            <li><a href="#">Thông tin</a></li>
+                            <li><a href="#">Thanh toán</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Điều khoản sử dụng</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-2">
+                    <div class="footer-widget">
+                        <h5>Tài khoản</h5>
+                        <ul>
+                            <li><a href="#">Tài khoản của tôi</a></li>
+                            <li><a href="#">Liên hệ</a></li>
+                            <li><a href="#">Giỏ hàng</a></li>
+                            <li><a href="#">Sảm phẩm của bạn</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="newslatter-item">
+                        <h5>Tham gia cùng chúng tôi</h5>
+                        <p>Cập nhật email mới nhất để tham gia các hoạt động của chúng tôi</p>
+                        <form action="#" class="subscribe-form">
+                            <input type="text" placeholder="Email của bạn">
+                            <button type="button">Đăng ký</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="copyright-reserved">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="copyright-text">
+                            <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Bản quyền &copy;<script>document.write(new Date().getFullYear());</script> Đã đăng ký bản quyền | Mẫu này được thiết kế <i class="fa fa-heart-o" aria-hidden="true"></i> bởi Colorlib</a>
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                        </div>
+                        <div class="payment-pic">
+                            <img src="/images/Display/payment-method.png" alt=""/>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- Footer Section End -->
+
+    <!-- Js Plugins -->
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery-3.3.1.min.js")%>"></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/bootstrap.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery-ui.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery.countdown.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery.nice-select.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery.zoom.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery.dd.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/jquery.slicknav.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/owl.carousel.min.js")%>" ></script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/main.js")%>" ></script>
+    <asp:ContentPlaceHolder ID="js" runat="server"></asp:ContentPlaceHolder>
+    <script>
+        if ($('.notlogin').length != 1) {
+            getAllCart();
+        }
+    </script>
+    <script src="<%=Page.ResolveUrl("~/Asets/display/js/custom.js")%>" ></script>
+
+</body>
+</html>

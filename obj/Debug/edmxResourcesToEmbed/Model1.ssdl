@@ -1,0 +1,142 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="WebQuanLyDuAnNhom3Model.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2012" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityContainer Name="WebQuanLyDuAnNhom3ModelStoreContainer">
+    <EntitySet Name="CHITIETDONHANG" EntityType="WebQuanLyDuAnNhom3Model.Store.CHITIETDONHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DANHMUC" EntityType="WebQuanLyDuAnNhom3Model.Store.DANHMUC" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="DONHANG" EntityType="WebQuanLyDuAnNhom3Model.Store.DONHANG" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="SANPHAM" EntityType="WebQuanLyDuAnNhom3Model.Store.SANPHAM" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="TAIKHOAN" EntityType="WebQuanLyDuAnNhom3Model.Store.TAIKHOAN" store:Type="Tables" Schema="dbo" />
+    <AssociationSet Name="MaDonHang_pk" Association="WebQuanLyDuAnNhom3Model.Store.MaDonHang_pk">
+      <End Role="DONHANG" EntitySet="DONHANG" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+    </AssociationSet>
+    <AssociationSet Name="MaSanPham_pk" Association="WebQuanLyDuAnNhom3Model.Store.MaSanPham_pk">
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+      <End Role="CHITIETDONHANG" EntitySet="CHITIETDONHANG" />
+    </AssociationSet>
+    <AssociationSet Name="DanhMuc_id_pk" Association="WebQuanLyDuAnNhom3Model.Store.DanhMuc_id_pk">
+      <End Role="DANHMUC" EntitySet="DANHMUC" />
+      <End Role="SANPHAM" EntitySet="SANPHAM" />
+    </AssociationSet>
+    <AssociationSet Name="TaiKhoan_id_pk" Association="WebQuanLyDuAnNhom3Model.Store.TaiKhoan_id_pk">
+      <End Role="TAIKHOAN" EntitySet="TAIKHOAN" />
+      <End Role="DONHANG" EntitySet="DONHANG" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="CHITIETDONHANG">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="MaDonHang" Type="int" Nullable="false" />
+    <Property Name="MaSanPham" Type="int" Nullable="false" />
+    <Property Name="SoLuong" Type="int" Nullable="false" />
+    <Property Name="GiaBan" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="TongTien" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+  </EntityType>
+  <EntityType Name="DANHMUC">
+    <Key>
+      <PropertyRef Name="MaDanhMuc" />
+    </Key>
+    <Property Name="MaDanhMuc" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenDanhMuc" Type="nvarchar" Nullable="false" MaxLength="100" />
+  </EntityType>
+  <EntityType Name="DONHANG">
+    <Key>
+      <PropertyRef Name="MaDonHang" />
+    </Key>
+    <Property Name="MaDonHang" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaKhachHang" Type="int" Nullable="false" />
+    <Property Name="ThanhToan" Type="nvarchar" Nullable="true" MaxLength="255" />
+    <Property Name="NgayDatHang" Type="datetime" Nullable="true" />
+    <Property Name="NgayNhanHang" Type="datetime" Nullable="true" />
+    <Property Name="TrangThai" Type="nvarchar" Nullable="true" MaxLength="100" />
+    <Property Name="TenKhachHang" Type="nvarchar" Nullable="true" MaxLength="50" />
+    <Property Name="DiaChi" Type="varchar(max)" Nullable="true" />
+    <Property Name="SoDienThoai" Type="varchar" Nullable="true" MaxLength="15" />
+  </EntityType>
+  <EntityType Name="SANPHAM">
+    <Key>
+      <PropertyRef Name="MaSanPham" />
+    </Key>
+    <Property Name="MaSanPham" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="MaDanhMuc" Type="int" Nullable="false" />
+    <Property Name="Mau" Type="nvarchar" Nullable="true" MaxLength="20" />
+    <Property Name="TenSanPham" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Anh" Type="varchar(max)" Nullable="false" />
+    <Property Name="MieuTa" Type="varchar(max)" Nullable="false" />
+    <Property Name="Gia" Type="decimal" Nullable="false" Precision="18" Scale="0" />
+    <Property Name="SoLuongTrongKho" Type="int" Nullable="false" />
+    <Property Name="HanSuDung" Type="datetime" Nullable="true" />
+    <Property Name="NgayThem" Type="datetime" Nullable="true" />
+  </EntityType>
+  <EntityType Name="TAIKHOAN">
+    <Key>
+      <PropertyRef Name="MaTaiKhoan" />
+    </Key>
+    <Property Name="MaTaiKhoan" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="TenTaiKhoan" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="MatKhau" Type="nvarchar" Nullable="false" MaxLength="255" />
+    <Property Name="Ten" Type="nvarchar" Nullable="false" MaxLength="100" />
+    <Property Name="DiaChi" Type="varchar(max)" Nullable="false" />
+    <Property Name="SoDienThoai" Type="varchar" Nullable="false" MaxLength="15" />
+    <Property Name="Check_admin" Type="int" Nullable="true" />
+    <Property Name="NgayTao" Type="datetime" Nullable="true" />
+  </EntityType>
+  <Association Name="MaDonHang_pk">
+    <End Role="DONHANG" Type="WebQuanLyDuAnNhom3Model.Store.DONHANG" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CHITIETDONHANG" Type="WebQuanLyDuAnNhom3Model.Store.CHITIETDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Principal>
+      <Dependent Role="CHITIETDONHANG">
+        <PropertyRef Name="MaDonHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="MaSanPham_pk">
+    <End Role="SANPHAM" Type="WebQuanLyDuAnNhom3Model.Store.SANPHAM" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="CHITIETDONHANG" Type="WebQuanLyDuAnNhom3Model.Store.CHITIETDONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SANPHAM">
+        <PropertyRef Name="MaSanPham" />
+      </Principal>
+      <Dependent Role="CHITIETDONHANG">
+        <PropertyRef Name="MaSanPham" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="DanhMuc_id_pk">
+    <End Role="DANHMUC" Type="WebQuanLyDuAnNhom3Model.Store.DANHMUC" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="SANPHAM" Type="WebQuanLyDuAnNhom3Model.Store.SANPHAM" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="DANHMUC">
+        <PropertyRef Name="MaDanhMuc" />
+      </Principal>
+      <Dependent Role="SANPHAM">
+        <PropertyRef Name="MaDanhMuc" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="TaiKhoan_id_pk">
+    <End Role="TAIKHOAN" Type="WebQuanLyDuAnNhom3Model.Store.TAIKHOAN" Multiplicity="1">
+      <OnDelete Action="Cascade" />
+    </End>
+    <End Role="DONHANG" Type="WebQuanLyDuAnNhom3Model.Store.DONHANG" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="TAIKHOAN">
+        <PropertyRef Name="MaTaiKhoan" />
+      </Principal>
+      <Dependent Role="DONHANG">
+        <PropertyRef Name="MaKhachHang" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

@@ -1,0 +1,2 @@
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="GioHangLoadControl.ascx.cs" Inherits="WebBanHang.cms.admin.QLGioHang.GioHangLoadControl" %>
+<asp:PlaceHolder ID="plDonHangLoadControl" runat="server"></asp:PlaceHolder>
